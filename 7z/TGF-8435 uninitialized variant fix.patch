@@ -1,0 +1,24 @@
+# HG changeset patch
+# User adf build <adf_build@adfsolutions.com>
+# Date 1494851763 -3600
+#      Mon May 15 13:36:03 2017 +0100
+# Node ID 71407a21e70338544ae0ca3f36d4b8f7a0666aa3
+# Parent  d0c3faca6b84ed36af7d95ea7b583c075bdf4389
+TGF-8435 unitialized PropVariant fix
+
+diff -r d0c3faca6b84 -r 71407a21e703 CPP/Windows/PropVariant.h
+--- a/CPP/Windows/PropVariant.h	Sat Apr 22 16:56:51 2017 +0100
++++ b/CPP/Windows/PropVariant.h	Mon May 15 13:36:03 2017 +0100
+@@ -50,9 +50,9 @@
+   {
+     vt = VT_EMPTY;
+     wReserved1 = 0;
+-    // wReserved2 = 0;
+-    // wReserved3 = 0;
+-    // uhVal.QuadPart = 0;
++    wReserved2 = 0;
++    wReserved3 = 0;
++    uhVal.QuadPart = 0;
+     bstrVal = 0;
+   }
+   ~CPropVariant() throw() { Clear(); }
